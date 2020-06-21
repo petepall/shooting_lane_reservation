@@ -15,7 +15,7 @@ _**setup front end**_
 - [x] setup the client folder
 - [x] generate the vue app
 - [x] use vuetifyjs
-- [ ] add feathers-vuex
+- [x] add feathers-vuex
 - [ ] add login to client
 
 _**Authorization**_
@@ -34,6 +34,7 @@ _**Master data**_
 _**Reservations**_
 
 - [ ] Make reservation based on:
+
   - User
   - Date
   - Timeslot
