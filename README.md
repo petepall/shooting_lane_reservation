@@ -1,27 +1,44 @@
 # **Building a reservation system for shooting clubs**
 
-### Elements of the system:
+### TODO:
 
-_Master data_
+_**setup backend**_
 
-    [] User registrations
-    [] infrastruction definition
-        [] Ranges
-        [] Lanes
-        [] type (paper or electronic)
-    [] Availability per range (timeslots per date)
+- [x] setup feathersjs server folder
+- [x] generate the feathersjs app
 
-_Reservations_
+_**setup front end**_
 
-    [] Make reservation based on:
-        - User
-        - Date
-        - Timeslot
-        - Range
-        - Lanes
+- [x] setup the client folder
+- [x] generate the vue app
+- [x] use vuetifyjs
+- [ ] add feathers-vuex
+- [ ] add login to client
 
-    [] The user makes a reservation based on overview of available slots
-        - Overview should make clear what slots are still available for reservation
-        - Once a user starts making a reservation the slot should not be available to users
-    [] Availability checking is performed based on date, timelot, range and Lane
-    [] The reservation should be rejected if another person already reserved the Lane
+_**Authorization**_
+
+- [ ] add local auth to server
+
+_**Master data**_
+
+- [ ] User registrations
+- [ ] infrastruction definition
+  - [ ] Ranges
+  - [ ] Lanes
+  - [ ] type (paper or electronic)
+- [ ] Availability per range (timeslots per date)
+
+_**Reservations**_
+
+- [ ] Make reservation based on:
+  - User
+  - Date
+  - Timeslot
+  - Range
+  - Lanes
+
+- [ ] The user makes a reservation based on overview of available slots
+  - Overview should make clear what slots are still available for reservation
+  - Once a user starts making a reservation the slot should not be available to users
+- [ ] Availability checking is performed based on date, timelot, range and Lane
+- [ ] The reservation should be rejected if another person already reserved the Lane
