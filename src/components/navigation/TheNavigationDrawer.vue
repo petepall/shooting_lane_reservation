@@ -13,18 +13,24 @@
         rounded
         active-class="grey--text text--darken-4"
       >
-        <v-list-item :to="'/'">
+        <v-list-item
+          v-for="item in menuItems"
+          :key="item.title"
+          :to="item.link"
+        >
           <v-list-item-icon>
-            <v-icon>mdi-home</v-icon>
+            <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
-          <v-list-item-title>Home</v-list-item-title>
+          <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item>
-
-        <v-list-item :to="'/about'">
+        <v-list-item
+          v-if="userIsAuthenticated"
+          @click="onLogout"
+        >
           <v-list-item-icon>
-            <v-icon>mdi-account</v-icon>
+            <v-icon>mdi-logout</v-icon>
           </v-list-item-icon>
-          <v-list-item-title>About</v-list-item-title>
+          <v-list-item-title>Logout</v-list-item-title>
         </v-list-item>
       </v-list-item-group>
     </v-list>
@@ -33,7 +39,13 @@
 
 <script>
 export default {
-  props: { value: { type: Boolean } },
+  props: {
+    value: { type: Boolean },
+    menuItems: {
+      type: Array[String],
+      default: []
+    }
+  },
   data() {
     return {
       drawer: false,
