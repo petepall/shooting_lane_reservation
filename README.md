@@ -20,7 +20,7 @@ _**setup front end**_
 
 _**Authorization**_
 
-- [ ] add local auth to server
+- [x] add local auth to server
 
 _**Master data**_
 
