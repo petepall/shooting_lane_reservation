@@ -1,24 +1,27 @@
-# test-app
+# **Building a reservation system for shooting clubs**
 
-## Project setup
-```
-npm install
-```
+### Elements of the system:
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+_Master data_
 
-### Compiles and minifies for production
-```
-npm run build
-```
+    [] User registrations
+    [] infrastruction definition
+        [] Ranges
+        [] Lanes
+        [] type (paper or electronic)
+    [] Availability per range (timeslots per date)
 
-### Lints and fixes files
-```
-npm run lint
-```
+_Reservations_
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+    [] Make reservation based on:
+        - User
+        - Date
+        - Timeslot
+        - Range
+        - Lanes
+
+    [] The user makes a reservation based on overview of available slots
+        - Overview should make clear what slots are still available for reservation
+        - Once a user starts making a reservation the slot should not be available to users
+    [] Availability checking is performed based on date, timelot, range and Lane
+    [] The reservation should be rejected if another person already reserved the Lane
