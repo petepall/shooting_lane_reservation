@@ -60,7 +60,6 @@ export default {
     },
   },
   data: () => ({
-    userIsAuthenticated: false
   }),
 
   computed: {
