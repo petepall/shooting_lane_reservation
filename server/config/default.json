@@ -3,13 +3,13 @@
   "port": 3030,
   "public": "../public/",
   "paginate": {
-    "default": 10,
-    "max": 50
+    "default": 500,
+    "max": 1000
   },
   "authentication": {
     "entity": "user",
     "service": "users",
-    "secret": "Sfgezury9BIkEV3Od0Cw6bGFiak=",
+    "secret": "3169e7c0d26480f529993cfe19ae4eb873d7acfc36ec2f44e825abf51609697b737a87f219b55c82c38c66b3d1e7c4b6",
     "authStrategies": [
       "jwt",
       "local"
@@ -18,12 +18,14 @@
       "header": {
         "typ": "access"
       },
-      "audience": "https://yourdomain.com",
-      "issuer": "feathers",
+      "audience": "https://reservation.ppallen.be",
+      "subject": "auth",
+      "issuer": "ppallen.be",
       "algorithm": "HS256",
       "expiresIn": "1d"
     },
     "local": {
+      "entity": "user",
       "usernameField": "email",
       "passwordField": "password"
     }
