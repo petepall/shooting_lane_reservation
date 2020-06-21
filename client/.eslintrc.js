@@ -2,11 +2,11 @@ module.exports = {
   env: {
     node: true,
     es6: true,
-    browser: true
+    browser: true,
   },
   extends: ["plugin:vue/recommended", "@vue/airbnb"],
   parserOptions: {
-    parser: "babel-eslint"
+    parser: "babel-eslint",
   },
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
@@ -17,16 +17,16 @@ module.exports = {
       "error",
       {
         singleline: "never",
-        multiline: "always"
-      }
+        multiline: "always",
+      },
     ],
     "vue/max-attributes-per-line": [
       2,
       {
         multiline: {
-          allowFirstLine: false
-        }
-      }
+          allowFirstLine: false,
+        },
+      },
     ],
     "vue/html-self-closing": [
       "error",
@@ -34,11 +34,11 @@ module.exports = {
         html: {
           void: "never",
           normal: "always",
-          component: "always"
+          component: "always",
         },
         svg: "always",
-        math: "always"
-      }
+        math: "always",
+      },
     ]
-  }
+  },
 };
