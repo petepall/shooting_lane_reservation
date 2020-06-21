@@ -26,7 +26,7 @@ export default {
   components: { TheTopNavbar },
 
   data: () => ({
-    title: 'Match reservatie systeem'
+    title: 'Shooting lane reservation system'
   }),
 };
 </script>
