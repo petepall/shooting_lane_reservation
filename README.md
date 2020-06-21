@@ -1,5 +1,8 @@
 # **Building a reservation system for shooting clubs**
 
+The backend of the application is being build using featherjs and mongodb with the mongoose library.
+For the front-end the VueJs frameworks is used together with Vuetifyjs and Vuex
+
 ### TODO:
 
 _**setup backend**_
