@@ -74,6 +74,24 @@
         indeterminate
       />
     </v-col>
+    <v-snackbar
+      v-model="snackbar"
+      :timeout="snackBarTimeout"
+      color="error"
+    >
+      {{ snackBarMessage }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="info"
+          text
+          v-bind="attrs"
+          @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -104,7 +122,10 @@ export default {
       password: '',
       confirmPassword: ''
     },
-    error: ''
+    error: '',
+    snackbar: false,
+    snackBarTimeout: 3000,
+    snackBarMessage: ''
   }),
 
   computed: {
@@ -137,6 +158,8 @@ export default {
               ? 'That email address is unavailable.'
               : 'An error prevented signup.';
             console.log(err.message);
+            this.snackBarMessage = err.message;
+            this.snackbar = true;
           });
       }
     },
