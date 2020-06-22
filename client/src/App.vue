@@ -11,8 +11,10 @@
       </v-container>
     </v-main>
 
-    <v-footer app>
-    <!-- -->
+    <v-footer
+      app
+    >
+      <span>&copy; 2020 made by ppallen design</span>
     </v-footer>
   </v-app>
 </template>
