@@ -16,7 +16,8 @@ _**setup front end**_
 - [x] generate the vue app
 - [x] use vuetifyjs
 - [x] add feathers-vuex
-- [ ] add login to client
+- [x] add signup to client
+- [ ] add signin to client
 
 _**Authorization**_
 
@@ -24,7 +25,7 @@ _**Authorization**_
 
 _**Master data**_
 
-- [ ] User registrations
+- [x] User registrations
 - [ ] infrastruction definition
   - [ ] Ranges
   - [ ] Lanes

@@ -7,6 +7,7 @@
       justify="center"
     >
       <v-form
+        v-if="!loading"
         ref="form"
         v-model="valid"
         :lazy-validation="lazy"
@@ -66,11 +67,19 @@
           Reset Form
         </v-btn>
       </v-form>
+      <v-progress-circular
+        v-if="loading"
+        :size="70"
+        color="amber"
+        indeterminate
+      />
     </v-col>
   </v-container>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'SignUp',
   data: () => ({
@@ -94,7 +103,8 @@ export default {
       email: '',
       password: '',
       confirmPassword: ''
-    }
+    },
+    error: ''
   }),
 
   computed: {
@@ -103,12 +113,33 @@ export default {
         ? 'Passwords do not match'
         : true;
     },
+    ...mapState('users', { loading: 'isCreatePending' })
   },
 
   methods: {
     signUp() {
       if (this.valid) {
-        console.log(this.user);
+        const { User } = this.$FeathersVuex.api;
+        const user = new User(this.user);
+        user.save()
+          .then(() => {
+            console.log(user);
+            this.$router.push('/signin');
+          })
+          // Just use the returned error instead of mapping it from the store.
+          .catch((err) => {
+            // Convert the error to a plain object and add a message.
+            const { type, name } = err;
+            console.log(type);
+            // eslint-disable-next-line no-param-reassign
+            err = { ...err };
+            console.log(err);
+            // eslint-disable-next-line no-param-reassign
+            err.message = type === 'FeathersError' && name === 'Conflict'
+              ? 'That email address is unavailable.'
+              : 'An error prevented signup.';
+            console.log(err.message);
+          });
       }
     },
     reset() {

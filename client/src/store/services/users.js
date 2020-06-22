@@ -1,9 +1,11 @@
 import feathersClient, { makeServicePlugin, BaseModel } from '../../feathers-client';
 
 class User extends BaseModel {
+  // eslint-disable-next-line no-useless-constructor
   // constructor(data, options) {
   //   super(data, options);
   // }
+
   // Required for $FeathersVuex plugin to work after production transpile.
   static modelName = 'User';
 
