@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Error from '../views/Error.vue';
+import SignUp from '../views/authentication/SignUp.vue';
 
 Vue.use(VueRouter);
 
@@ -10,6 +11,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/signup',
+    name: 'SignUp',
+    component: SignUp
   },
   {
     path: '/404',
