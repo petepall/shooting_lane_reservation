@@ -130,10 +130,8 @@ export default {
           .catch((err) => {
             // Convert the error to a plain object and add a message.
             const { type, name } = err;
-            console.log(type);
             // eslint-disable-next-line no-param-reassign
             err = { ...err };
-            console.log(err);
             // eslint-disable-next-line no-param-reassign
             err.message = type === 'FeathersError' && name === 'Conflict'
               ? 'That email address is unavailable.'
