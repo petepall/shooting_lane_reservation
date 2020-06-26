@@ -49,10 +49,12 @@
 </template>
 
 <script>
-import TheNavigationDrawer from '@/components/navigation/TheNavigationDrawer.vue';
+// import TheNavigationDrawer from '@/components/navigation/TheNavigationDrawer.vue';
 
 export default {
-  components: { TheNavigationDrawer },
+  components: {
+    TheNavigationDrawer: () => import('@/components/navigation/TheNavigationDrawer.vue')
+  },
   props: {
     title: {
       type: String,

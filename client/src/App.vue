@@ -14,7 +14,7 @@
     <v-footer
       app
     >
-      <span>&copy; 2020 made by ppallen design</span>
+      <span>&copy; 2020 made by ppallen coding</span>
     </v-footer>
   </v-app>
 </template>
@@ -25,7 +25,10 @@
 export default {
   name: 'App',
 
-  components: { TheTopNavbar: () => import('@/components/navigation/TheTopNavbar.vue') },
+  components: {
+    // Lazy loading of components
+    TheTopNavbar: () => import('@/components/navigation/TheTopNavbar.vue')
+  },
 
   data: () => ({
     title: 'Shooting lane reservation system'
