@@ -20,12 +20,12 @@
 </template>
 
 <script>
-import TheTopNavbar from '@/components/navigation/TheTopNavbar.vue';
+// import TheTopNavbar from '@/components/navigation/TheTopNavbar.vue';
 
 export default {
   name: 'App',
 
-  components: { TheTopNavbar },
+  components: { TheTopNavbar: () => import('@/components/navigation/TheTopNavbar.vue') },
 
   data: () => ({
     title: 'Shooting lane reservation system'

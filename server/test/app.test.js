@@ -3,7 +3,7 @@ const url = require('url');
 const app = require('../src/app');
 
 const port = app.get('port') || 8998;
-const getUrl = pathname => url.format({
+const getUrl = (pathname) => url.format({
   hostname: app.get('host') || 'localhost',
   protocol: 'http',
   port,
@@ -13,12 +13,12 @@ const getUrl = pathname => url.format({
 describe('Feathers application tests (with jest)', () => {
   let server;
 
-  beforeAll(done => {
+  beforeAll((done) => {
     server = app.listen(port);
     server.once('listening', () => done());
   });
 
-  afterAll(done => {
+  afterAll((done) => {
     server.close(done);
   });
 
@@ -36,7 +36,7 @@ describe('Feathers application tests (with jest)', () => {
       try {
         await axios.get(getUrl('path/to/nowhere'), {
           headers: {
-            'Accept': 'text/html'
+            Accept: 'text/html'
           }
         });
       } catch (error) {
@@ -49,7 +49,7 @@ describe('Feathers application tests (with jest)', () => {
 
     it('shows a 404 JSON error without stack trace', async () => {
       expect.assertions(4);
-      
+
       try {
         await axios.get(getUrl('path/to/nowhere'));
       } catch (error) {
