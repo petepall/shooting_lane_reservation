@@ -30,9 +30,9 @@
           </v-icon>{{ item.title }}
         </v-btn>
         <v-btn
-          v-if="userIsAuthenticated"
+          v-if="isAuthenticated"
           text
-          @click="onLogout"
+          @click.prevent="logout"
         >
           <v-icon left>
             mdi-logout
@@ -44,12 +44,15 @@
     <TheNavigationDrawer
       ref="drawer"
       :menu-items="menuItems"
+      :is-authenticated="isAuthenticated"
+      @logout="logout"
     />
   </v-container>
 </template>
 
 <script>
 // import TheNavigationDrawer from '@/components/navigation/TheNavigationDrawer.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   components: {
@@ -65,13 +68,14 @@ export default {
   }),
 
   computed: {
+    ...mapGetters('auth', { isAuthenticated: 'isAuthenticated' }),
     menuItems() {
       let menuItems = [
         { icon: 'mdi-home', title: 'Home', link: '/' },
         { icon: 'mdi-account', title: 'Sign-up', link: '/signUp' },
         { icon: 'mdi-lock-open', title: 'Sign-in', link: '/signIn' }
       ];
-      if (this.userIsAuthenticated) {
+      if (this.isAuthenticated) {
         menuItems = [
           { icon: 'mdi-home', title: 'Home', link: '/' },
           {
@@ -88,6 +92,12 @@ export default {
         ];
       }
       return menuItems;
+    }
+  },
+
+  methods: {
+    logout() {
+      this.$store.dispatch('auth/logout');
     }
   }
 };

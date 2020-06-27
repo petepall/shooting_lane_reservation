@@ -24,8 +24,8 @@
           <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item>
         <v-list-item
-          v-if="userIsAuthenticated"
-          @click="onLogout"
+          v-if="isAuthenticated"
+          @click="logout"
         >
           <v-list-item-icon>
             <v-icon>mdi-logout</v-icon>
@@ -44,6 +44,9 @@ export default {
     menuItems: {
       type: Array[String],
       default: []
+    },
+    isAuthenticated: {
+      type: Boolean
     }
   },
   data() {
@@ -52,6 +55,12 @@ export default {
       group: 1
 
     };
+  },
+
+  methods: {
+    logout() {
+      this.$emit('logout');
+    }
   }
 };
 </script>
