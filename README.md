@@ -17,7 +17,7 @@ _**setup front end**_
 - [x] use vuetifyjs
 - [x] add feathers-vuex
 - [x] add signup to client
-- [ ] add signin to client
+- [x] add signin to client
 
 _**Authorization**_
 
