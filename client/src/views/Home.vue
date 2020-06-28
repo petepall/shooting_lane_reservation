@@ -56,11 +56,15 @@
             <p class="text-md-body-1 mt-3">
               Show available timeslots per day/range/lane.
             </p>
-            <img
-              src="../assets/Availability.svg"
-              alt="Availability picture"
-              class="mt-1"
-            >
+
+            <TheAvailabilityOverview
+              v-for="(value, name, index) in availability"
+              :key="index"
+              :headers="headers"
+              :availability="value.rangeAvailablity"
+              :day-of-availability="value.dayOfAvailability"
+              class="mb-4"
+            />
           </div>
         </div>
       </v-col>
@@ -72,12 +76,407 @@
 export default {
   name: 'Home',
 
-  data: () => ({
-  }),
-
-  computed: {
-
+  components: {
+    TheAvailabilityOverview: () => import('@/components/reservations/TheAvailabilityOverview.vue')
   },
+
+  data: () => ({
+
+    headers: [
+      {
+        text: 'Hours/Ranges',
+        align: 'start',
+        sortable: false,
+        value: 'name',
+      },
+      { text: '10 meter', value: 'range10M' },
+      { text: '25 meter', value: 'range25M' },
+      { text: '30 meter', value: 'range30M' },
+      { text: '50 meter', value: 'range50m' },
+      { text: '100 meter', value: 'range100m' },
+    ],
+
+    availability: [
+      {
+        dayOfAvailability: 'Wednesday',
+        rangeAvailablity: [
+          {
+            name: '18 uur',
+            range10M: 1,
+            range25M: 1,
+            range30M: 1,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '19 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '20 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '21 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '22 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '23 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+        ],
+      },
+      {
+        dayOfAvailability: 'Thursday',
+        rangeAvailablity: [
+          {
+            name: '18 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '19 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '20 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '21 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '22 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '23 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+        ],
+      },
+      {
+        dayOfAvailability: 'Friday',
+        rangeAvailablity: [
+          {
+            name: '15 uur',
+            range10M: 1,
+            range25M: 1,
+            range30M: 1,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '16 uur',
+            range10M: 1,
+            range25M: 1,
+            range30M: 1,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '17 uur',
+            range10M: 1,
+            range25M: 1,
+            range30M: 1,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '18 uur',
+            range10M: 1,
+            range25M: 1,
+            range30M: 1,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '19 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '20 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '21 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '22 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '23 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+        ],
+      },
+      {
+        dayOfAvailability: 'Saturday',
+        rangeAvailablity: [
+          {
+            name: '9 uur',
+            range10M: 1,
+            range25M: 1,
+            range30M: 1,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '10 uur',
+            range10M: 1,
+            range25M: 1,
+            range30M: 1,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '11 uur',
+            range10M: 1,
+            range25M: 1,
+            range30M: 1,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '14 uur',
+            range10M: 1,
+            range25M: 1,
+            range30M: 1,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '15 uur',
+            range10M: 1,
+            range25M: 1,
+            range30M: 1,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '16 uur',
+            range10M: 1,
+            range25M: 1,
+            range30M: 1,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '17 uur',
+            range10M: 1,
+            range25M: 1,
+            range30M: 1,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '18 uur',
+            range10M: 1,
+            range25M: 1,
+            range30M: 1,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '19 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '20 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '21 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '22 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '23 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+        ],
+      },
+      {
+        dayOfAvailability: 'Sunday',
+        rangeAvailablity: [
+          {
+            name: '14 uur',
+            range10M: 1,
+            range25M: 1,
+            range30M: 1,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '15 uur',
+            range10M: 1,
+            range25M: 1,
+            range30M: 1,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '16 uur',
+            range10M: 1,
+            range25M: 1,
+            range30M: 1,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '17 uur',
+            range10M: 1,
+            range25M: 1,
+            range30M: 1,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '18 uur',
+            range10M: 1,
+            range25M: 1,
+            range30M: 1,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '19 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '20 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '21 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '22 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+          {
+            name: '23 uur',
+            range10M: 5,
+            range25M: 5,
+            range30M: 5,
+            range50m: 3,
+            range100m: 4,
+          },
+        ],
+      },
+    ],
+
+  }),
 
   head: {
     title() {
