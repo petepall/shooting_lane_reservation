@@ -7,11 +7,12 @@
     <v-list
       nav
       dense
+      rounded
     >
       <v-list-item-group
         v-model="group"
         rounded
-        active-class="grey--text text--darken-4"
+        active-class="success--text text--darken-2"
       >
         <v-list-item
           v-for="item in menuItems"
@@ -64,3 +65,7 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+
+</style>

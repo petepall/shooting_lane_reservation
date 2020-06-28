@@ -5,7 +5,7 @@
       color="grey lighten-5"
     >
       <v-app-bar-nav-icon
-        class="d-none d-flex d-sm-none"
+        class="d-none d-sm-flex d-md-none"
         @click.prevent="$refs.drawer.drawer = !$refs.drawer.drawer"
       />
       <v-img
@@ -18,7 +18,7 @@
 
       <v-spacer />
 
-      <v-toolbar-items class="d-none d-sm-flex">
+      <v-toolbar-items class="d-sm-none d-md-flex">
         <v-btn
           v-for="item in menuItems"
           :key="item.title"
@@ -32,6 +32,7 @@
         <v-btn
           v-if="isAuthenticated"
           text
+          class="logout--text"
           @click.prevent="logout"
         >
           <v-icon left>
@@ -109,4 +110,13 @@ export default {
   height: 55px;
   max-width: 83px;
 }
+
+.v-btn--text:hover {
+  color: #43A047;
+}
+
+.logout--text:hover {
+  color: #B71C1C;
+}
+
 </style>
