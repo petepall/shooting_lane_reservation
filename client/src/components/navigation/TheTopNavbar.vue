@@ -5,12 +5,12 @@
       color="grey lighten-5"
     >
       <v-app-bar-nav-icon
-        class="d-none d-sm-flex d-md-none"
+        class="hidden-md-and-up"
         @click.prevent="$refs.drawer.drawer = !$refs.drawer.drawer"
       />
       <v-img
         src="../../assets/shooting-lane.png"
-        class=".d-none d-md-block shooting-lane mx-3"
+        class="hidden-sm-and-down shooting-lane mx-3"
       />
       <v-toolbar-title class="text-uppercase grey--text text--darken-3">
         {{ title }}
@@ -18,7 +18,7 @@
 
       <v-spacer />
 
-      <v-toolbar-items class="d-sm-none d-md-flex">
+      <v-toolbar-items class="hidden-sm-and-down">
         <v-btn
           v-for="item in menuItems"
           :key="item.title"
