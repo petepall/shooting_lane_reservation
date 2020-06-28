@@ -41,11 +41,13 @@
               If this is your first time here, click the
               <span class="font-weight-bold error--text">"Signup"</span> link to create an account.
             </p>
-            <img
-              src="../assets/Singup.png"
-              alt="Signup logo"
-              class="mt-1"
-            >
+            <router-link to="/signup">
+              <img
+                src="../assets/Singup.png"
+                alt="Signup logo"
+                class="mt-1"
+              >
+            </router-link>
           </div>
           <div>
             <h2 class="font-weight-bold mt-5">
