@@ -20,7 +20,7 @@
 </template>
 
 <script>
-// import TheTopNavbar from '@/components/navigation/TheTopNavbar.vue';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'App',
@@ -33,5 +33,28 @@ export default {
   data: () => ({
     title: 'Shooting lane reservation system'
   }),
+
+  mounted() {
+    this.authenticate()
+      .then(() => {
+        this.$router.push('/').catch(() => {});
+      })
+      .catch((error) => {
+        const type = error.className;
+        // eslint-disable-next-line no-param-reassign
+        error = { ...error };
+        // eslint-disable-next-line no-param-reassign
+        error.message = (type === 'not-authenticated')
+          ? 'Incorrect email or password.'
+          : 'An error prevented login.';
+        this.error = error;
+        console.error(this.error.message);
+        this.snackBarMessage = this.error.message;
+        this.snackbar = true;
+      });
+  },
+
+  methods: { ...mapActions('auth', ['authenticate']), },
+
 };
 </script>
