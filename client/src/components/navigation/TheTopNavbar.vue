@@ -100,7 +100,7 @@ export default {
     ...mapActions('auth', ['logout']),
 
     logoutRedirect() {
-      this.logout().then(() => this.$router.push('/'));
+      this.logout().then(() => this.$router.push('/').catch(() => {}));
     }
   }
 };
