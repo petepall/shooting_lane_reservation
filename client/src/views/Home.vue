@@ -19,7 +19,7 @@
           <div class="text-center mt-8">
             <v-card :elevation="3">
               <v-card-text>
-                <h1>
+                <h1 class="text-xs-h4 text-sm-h4 text-md-h4 text-lg-h4">
                   Welcome to our online lane reservation system
                 </h1>
               </v-card-text>
@@ -45,7 +45,7 @@
               <img
                 src="../assets/Singup.png"
                 alt="Signup logo"
-                class="mt-1"
+                class="mt-1 signup"
               >
             </router-link>
           </div>
@@ -493,7 +493,8 @@ export default {
 .home {
   width: 100%;
 
-  img.headerPicture {
+  img.headerPicture,
+  img.signup {
     display: block;
     max-width: 100%;
     height:auto;
