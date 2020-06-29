@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+
 import Home from '../views/Home.vue';
 import Error from '../views/Error.vue';
 import SignUp from '../views/authentication/SignUp.vue';
 import SignIn from '../views/authentication/SingIn.vue';
+import Profile from '../views/user/Profile.vue';
 
 Vue.use(VueRouter);
 
@@ -22,6 +24,11 @@ const routes = [
     path: '/signin',
     name: 'SignIn',
     component: SignIn,
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile,
   },
   {
     path: '/404',
