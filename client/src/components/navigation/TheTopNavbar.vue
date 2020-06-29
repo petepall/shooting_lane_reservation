@@ -33,7 +33,7 @@
           v-if="isAuthenticated"
           text
           class="logout--text"
-          @click.prevent="logout"
+          @click.prevent="logoutRedirect"
         >
           <v-icon left>
             mdi-logout
@@ -46,14 +46,14 @@
       ref="drawer"
       :menu-items="menuItems"
       :is-authenticated="isAuthenticated"
-      @logout="logout"
+      @logout="logoutRedirect"
     />
   </v-container>
 </template>
 
 <script>
 // import TheNavigationDrawer from '@/components/navigation/TheNavigationDrawer.vue';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   components: {
@@ -97,8 +97,10 @@ export default {
   },
 
   methods: {
-    logout() {
-      this.$store.dispatch('auth/logout');
+    ...mapActions('auth', ['logout']),
+
+    logoutRedirect() {
+      this.logout().then(() => this.$router.push('/'));
     }
   }
 };
