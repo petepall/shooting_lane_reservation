@@ -22,6 +22,10 @@ _**setup front end**_
 _**Authorization**_
 
 - [x] add local auth to server
+- [ ] Add navigation guards for
+  - Profile page
+  - Reservation page
+  - Availability page
 
 _**Master data**_
 
