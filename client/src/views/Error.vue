@@ -7,7 +7,7 @@
         alt="Oops 404"
       >
       <h1>Hello there</h1>
-      <p>You tried to access a page that does not exist 😕</p>
+      <p>You tried to access a page that is not available 😕</p>
       <h2>{{ pageNotFound }}</h2>
       <div class="return-home">
         <router-link
