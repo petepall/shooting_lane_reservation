@@ -48,7 +48,7 @@ export default {
           ? 'Incorrect email or password.'
           : 'An error prevented login.';
         this.error = error;
-        console.error(this.error.message);
+        // console.error(this.error.message);
         this.snackBarMessage = this.error.message;
         this.snackbar = true;
       });
