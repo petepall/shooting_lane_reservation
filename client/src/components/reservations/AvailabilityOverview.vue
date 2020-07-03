@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  name: 'TheAvailabilityOverview',
+  name: 'AvailabilityOverview',
 
   props: {
     headers: {

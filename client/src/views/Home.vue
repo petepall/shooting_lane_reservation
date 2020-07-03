@@ -57,7 +57,7 @@
               Show available timeslots per day/range/lane.
             </p>
 
-            <TheAvailabilityOverview
+            <AvailabilityOverview
               v-for="(value, name, index) in availability"
               :key="index"
               :headers="headers"
@@ -77,7 +77,7 @@ export default {
   name: 'Home',
 
   components: {
-    TheAvailabilityOverview: () => import('@/components/reservations/TheAvailabilityOverview.vue')
+    AvailabilityOverview: () => import('@/components/reservations/AvailabilityOverview.vue')
   },
 
   data: () => ({
