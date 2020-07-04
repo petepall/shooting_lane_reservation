@@ -2,21 +2,23 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import Home from '../views/Home.vue';
-import Error from '../views/Error.vue';
-import SignUp from '../views/authentication/SignUp.vue';
-import SignIn from '../views/authentication/SingIn.vue';
-import Profile from '../views/user/Profile.vue';
-import Availability from '../views/reservations/Availability.vue';
-import LaneReservation from '../views/reservations/LaneReservation.vue';
 import store from '../store';
+
+// Lazy loading the route components
+const Profile = () => import('../views/user/Profile.vue');
+const Availability = () => import('../views/reservations/Availability.vue');
+const LaneReservation = () => import('../views/reservations/LaneReservation.vue');
+const Error = () => import('../views/Error.vue');
+const SignUp = () => import('../views/authentication/SignUp.vue');
+const SignIn = () => import('../views/authentication/SingIn.vue');
 
 Vue.use(VueRouter);
 
 function authGuard(to, from, next) {
   store
     .dispatch('auth/authenticate')
-    .then((response) => {
-      console.log(response.user);
+    .then(() => {
+      // console.log(response.user);
       next();
     })
     .catch((error) => {
