@@ -11,9 +11,7 @@
       </v-container>
     </v-main>
 
-    <v-footer
-      app
-    >
+    <v-footer app>
       <span>&copy; 2020 made by ppallen coding</span>
     </v-footer>
   </v-app>
@@ -27,11 +25,11 @@ export default {
 
   components: {
     // Lazy loading of components
-    TheTopNavbar: () => import('@/components/navigation/TheTopNavbar.vue')
+    TheTopNavbar: () => import('@/components/navigation/TheTopNavbar.vue'),
   },
 
   data: () => ({
-    title: 'Shooting lane reservation system'
+    title: 'Shooting lane reservation system',
   }),
 
   mounted() {
@@ -44,7 +42,7 @@ export default {
         // eslint-disable-next-line no-param-reassign
         error = { ...error };
         // eslint-disable-next-line no-param-reassign
-        error.message = (type === 'not-authenticated')
+        error.message = type === 'not-authenticated'
           ? 'Incorrect email or password.'
           : 'An error prevented login.';
         this.error = error;
@@ -54,7 +52,6 @@ export default {
       });
   },
 
-  methods: { ...mapActions('auth', ['authenticate']), },
-
+  methods: { ...mapActions('auth', ['authenticate']) },
 };
 </script>

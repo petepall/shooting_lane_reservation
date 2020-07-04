@@ -144,7 +144,7 @@ export default {
         const user = new User(this.user);
         user.save()
           .then(() => {
-            console.log(user);
+            // console.log(user);
             this.$router.push('/signin');
           })
           // Just use the returned error instead of mapping it from the store.
