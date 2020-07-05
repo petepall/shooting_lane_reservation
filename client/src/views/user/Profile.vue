@@ -54,6 +54,22 @@
           >
             <template v-slot:activator="{ on, attrs }">
               <v-text-field
+                v-model="user.imageUrl"
+                name="image-url"
+                label="Image Url"
+                v-bind="attrs"
+                v-on="on"
+              />
+            </template>
+            <span>Enter new Url to profile image to update</span>
+          </v-tooltip>
+
+          <v-tooltip
+            right
+            color="secondary"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-text-field
                 v-model="user.email"
                 :rules="emailRules"
                 name="email"
@@ -66,6 +82,24 @@
             <span>Enter new email to update</span>
           </v-tooltip>
 
+          <v-btn
+            :disabled="!valid"
+            type="submit"
+            color="success"
+            class="mr-4"
+            @click.prevent="updateUser"
+          >
+            Update profile
+          </v-btn>
+          <v-divider class="mt-4" />
+        </v-form>
+        <v-form
+          ref="form"
+          v-model="valid2"
+          :lazy-validation="lazy"
+          @keypress.enter.native.prevent
+          @submit.prevent="signIn"
+        >
           <v-tooltip
             right
             color="secondary"
@@ -109,13 +143,13 @@
           </v-tooltip>
 
           <v-btn
-            :disabled="!valid"
+            :disabled="!valid2"
             type="submit"
             color="success"
             class="mr-4"
-            @click.prevent="updateUser"
+            @click.prevent="updatePassword"
           >
-            Update profile
+            Update password
           </v-btn>
         </v-form>
       </v-col>
@@ -148,6 +182,7 @@ export default {
   data() {
     return {
       valid: true,
+      valid2: false,
       show1: false,
       show2: false,
       emailRules: [
@@ -167,13 +202,15 @@ export default {
       user: {
         email: '',
         displayName: '',
-        password: '',
-        confirmPassword: '',
+        // password: '',
+        // confirmPassword: '',
+        imageUrl: ''
       },
       snackbar: false,
       snackBarTimeout: 3000,
       snackBarMessage: '',
-      snackBarColor: 'success'
+      snackBarColor: 'success',
+      oldEmail: ''
     };
   },
 
@@ -195,6 +232,7 @@ export default {
         .dispatch('auth/authenticate')
         .then((response) => {
           this.user = response.user;
+          this.oldEmail = this.user.email;
         })
         .catch((error) => {
           if (!error.message.includes('Could not find stored JWT')) {
@@ -206,7 +244,28 @@ export default {
 
     updateUser() {
       if (this.valid) {
-        // console.log(this.user);
+        const params = { query: { email: this.user.email } };
+        this.$store.dispatch('users/find', params).then((resolve) => {
+          if ((resolve.data.length === 0 || undefined)
+            || (this.user.email === this.oldEmail)) {
+            // eslint-disable-next-line no-underscore-dangle
+            this.$store.dispatch('users/patch', [this.user._id, this.user]);
+            this.snackBarColor = 'success';
+            this.snackBarMessage = 'User profile updated';
+            this.snackbar = true;
+          } else {
+            throw new Error('That email address is unavailable.');
+          }
+        }).catch((err) => {
+          this.snackBarColor = 'error';
+          this.snackBarMessage = err.message;
+          this.snackbar = true;
+        });
+      }
+    },
+
+    updatePassword() {
+      if (this.valid) {
         const { User } = this.$FeathersVuex.api;
         const user = new User(this.user);
         user.update()
@@ -214,7 +273,7 @@ export default {
             // console.log(user);
             this.$router.push('/profile').catch(() => {});
             this.snackBarColor = 'success';
-            this.snackBarMessage = 'User profile updated';
+            this.snackBarMessage = 'Password updated';
             this.snackbar = true;
           })
           // Just use the returned error instead of mapping it from the store.
