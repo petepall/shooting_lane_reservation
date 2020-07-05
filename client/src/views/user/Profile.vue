@@ -30,14 +30,23 @@
           @keypress.enter.native.prevent
           @submit.prevent="signIn"
         >
-          <v-text-field
-            v-model="user.displayName"
-            :rules="displayNameRules"
-            name="display-name"
-            label="Display name"
-            required
-            readonly
-          />
+          <v-tooltip
+            right
+            color="secondary"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-text-field
+                v-model="user.displayName"
+                :rules="displayNameRules"
+                name="display-name"
+                label="Display name"
+                v-bind="attrs"
+                required
+                v-on="on"
+              />
+            </template>
+            <span>Enter new display name to update</span>
+          </v-tooltip>
 
           <v-tooltip
             right
@@ -114,7 +123,7 @@
     <v-snackbar
       v-model="snackbar"
       :timeout="snackBarTimeout"
-      color="success"
+      :color="snackBarColor"
     >
       {{ snackBarMessage }}
 
@@ -163,7 +172,8 @@ export default {
       },
       snackbar: false,
       snackBarTimeout: 3000,
-      snackBarMessage: ''
+      snackBarMessage: '',
+      snackBarColor: 'success'
     };
   },
 
@@ -203,6 +213,7 @@ export default {
           .then(() => {
             // console.log(user);
             this.$router.push('/profile').catch(() => {});
+            this.snackBarColor = 'success';
             this.snackBarMessage = 'User profile updated';
             this.snackbar = true;
           })
@@ -216,7 +227,8 @@ export default {
             err.message = type === 'FeathersError' && name === 'Conflict'
               ? 'That email address is unavailable.'
               : 'An error prevented signup.';
-            console.log(err.message);
+            // console.log(err.message);
+            this.snackBarColor = 'error';
             this.snackBarMessage = err.message;
             this.snackbar = true;
           });
