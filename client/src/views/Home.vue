@@ -54,7 +54,7 @@
               Overview of available time slots
             </h2>
             <p class="text-md-body-1 mt-3">
-              Show available timeslots per day/range/lane.
+              Available timeslots per day/range/lane.
             </p>
 
             <AvailabilityOverview
