@@ -8,10 +8,14 @@ module.exports = (app) => {
   const schema = new mongooseClient.Schema(
     {
       email: {
-        type: String, required: true, unique: true, lowercase: true
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true,
       },
       password: { type: String, required: true },
       displayName: { type: String, required: true },
+      imageUrl: { type: String, required: false },
     },
     {
       timestamps: true,

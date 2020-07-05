@@ -15,6 +15,7 @@ class User extends BaseModel {
       email: '',
       password: '',
       displayName: '',
+      imageUrl: '',
     };
   }
 }
