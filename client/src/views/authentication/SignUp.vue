@@ -24,6 +24,12 @@
         />
 
         <v-text-field
+          v-model="user.imageUrl"
+          name="image-url"
+          label="Image Url"
+        />
+
+        <v-text-field
           v-model="user.email"
           :rules="emailRules"
           name="email"
@@ -120,7 +126,8 @@ export default {
       displayName: '',
       email: '',
       password: '',
-      confirmPassword: ''
+      imageUrl: '',
+      confirmPassword: '',
     },
     error: '',
     snackbar: false,
@@ -157,7 +164,7 @@ export default {
             err.message = type === 'FeathersError' && name === 'Conflict'
               ? 'That email address is unavailable.'
               : 'An error prevented signup.';
-            console.log(err.message);
+            // console.log(err.message);
             this.snackBarMessage = err.message;
             this.snackbar = true;
           });
