@@ -103,24 +103,15 @@
 
 <script>
 import { mapState } from 'vuex';
+import { emailRules, displayNameRules, passwordRules } from '../../helpers/validators';
 
 export default {
   name: 'SignUp',
   data: () => ({
     valid: true,
-    displayNameRules: [
-      (v) => !!v || 'Name is required',
-      (v) => (v && v.length <= 45) || 'Name must be less than 45 characters',
-    ],
-    emailRules: [
-      (v) => !!v || 'E-mail is required',
-      (v) => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-    ],
-    passwordRules: [
-      (v) => !!v || 'Password is required',
-      (v) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{4,})/.test(v)
-      || 'Min. 4 characters with at least one capital letter, a number and a special character.'
-    ],
+    displayNameRules,
+    emailRules,
+    passwordRules,
     lazy: false,
     user: {
       displayName: '',

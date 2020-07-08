@@ -70,15 +70,13 @@
 
 <script>
 import { mapState } from 'vuex';
+import { emailRules } from '../../helpers/validators';
 
 export default {
   name: 'SignIn',
   data: () => ({
     valid: true,
-    emailRules: [
-      (v) => !!v || 'E-mail is required',
-      (v) => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-    ],
+    emailRules,
     lazy: false,
     user: {
       email: '',
