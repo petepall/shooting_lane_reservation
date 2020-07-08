@@ -175,6 +175,7 @@
 </template>
 
 <script>
+import { emailRules, displayNameRules, passwordRules } from '../../helpers/validators';
 
 export default {
   name: 'Profile',
@@ -185,19 +186,9 @@ export default {
       valid2: false,
       show1: false,
       show2: false,
-      emailRules: [
-        (v) => !!v || 'E-mail is required',
-        (v) => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-      ],
-      displayNameRules: [
-        (v) => !!v || 'Name is required',
-        (v) => (v && v.length <= 45) || 'Name must be less than 45 characters',
-      ],
-      passwordRules: [
-        (v) => !!v || 'Password is required',
-        (v) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{4,})/.test(v)
-      || 'Min. 4 characters with at least one capital letter, a number and a special character.'
-      ],
+      emailRules,
+      displayNameRules,
+      passwordRules,
       lazy: false,
       user: {
         email: '',
