@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 export const emailRules = [
   (v) => !!v || 'E-mail is required',
   (v) => /.+@.+\..+/.test(v) || 'E-mail must be valid'
