@@ -4,7 +4,15 @@
 
 <script>
 export default {
-  name: 'Availability'
+  name: 'Availability',
+
+  head: {
+    title() {
+      return {
+        inner: 'Availability page'
+      };
+    },
+  },
 
 };
 </script>

@@ -116,6 +116,14 @@ export default {
       }
     },
   },
+
+  head: {
+    title() {
+      return {
+        inner: 'Signin page'
+      };
+    },
+  },
 };
 </script>
 

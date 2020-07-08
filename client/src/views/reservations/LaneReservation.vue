@@ -4,7 +4,15 @@
 
 <script>
 export default {
-  name: 'LaneReservation'
+  name: 'LaneReservation',
+
+  head: {
+    title() {
+      return {
+        inner: 'Lane reservation page'
+      };
+    },
+  },
 
 };
 </script>

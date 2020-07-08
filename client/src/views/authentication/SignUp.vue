@@ -173,6 +173,14 @@ export default {
     //   this.$refs.form.resetValidation();
     // },
   },
+
+  head: {
+    title() {
+      return {
+        inner: 'Signup page'
+      };
+    },
+  },
 };
 </script>
 

@@ -285,6 +285,14 @@ export default {
       }
     },
   },
+
+  head: {
+    title() {
+      return {
+        inner: 'Profile page'
+      };
+    },
+  },
 };
 
 </script>
