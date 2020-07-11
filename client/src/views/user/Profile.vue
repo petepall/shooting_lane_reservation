@@ -175,6 +175,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import { emailRules, displayNameRules, passwordRules } from '../../helpers/validators';
 
 export default {
@@ -218,6 +219,7 @@ export default {
   },
 
   methods: {
+    ...mapActions('users', ['patch', 'find']),
     getUser() {
       this.$store
         .dispatch('auth/authenticate')
@@ -236,11 +238,13 @@ export default {
     updateUser() {
       if (this.valid) {
         const params = { query: { email: this.user.email } };
-        this.$store.dispatch('users/find', params).then((resolve) => {
+        // this.$store.dispatch('users/find', params).then((resolve) => {
+        this.find(params).then((resolve) => {
           if ((resolve.data.length === 0 || undefined)
             || (this.user.email === this.oldEmail)) {
+            // this.$store.dispatch('users/patch', [this.user._id, this.user]);
             // eslint-disable-next-line no-underscore-dangle
-            this.$store.dispatch('users/patch', [this.user._id, this.user]);
+            this.patch([this.user._id, this.user]);
             this.snackBarColor = 'success';
             this.snackBarMessage = 'User profile updated';
             this.snackbar = true;
