@@ -42,9 +42,10 @@ export default {
         // eslint-disable-next-line no-param-reassign
         error = { ...error };
         // eslint-disable-next-line no-param-reassign
-        error.message = type === 'not-authenticated'
-          ? 'Incorrect email or password.'
-          : 'An error prevented login.';
+        error.message =
+          type === 'not-authenticated'
+            ? 'Incorrect email or password.'
+            : 'An error prevented login.';
         this.error = error;
         // console.error(this.error.message);
         this.snackBarMessage = this.error.message;

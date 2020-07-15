@@ -15,47 +15,43 @@
             src="../assets/reservation.jpg"
             alt="Reservation"
             class="headerPicture"
-          >
+          />
           <div class="text-center mt-8">
             <v-card :elevation="3">
               <v-card-text>
-                <h1 class="text-xs-h4 text-sm-h4 text-md-h4 text-lg-h4">
-                  Welcome to our online lane reservation system
-                </h1>
+                <h1
+                  class="text-xs-h4 text-sm-h4 text-md-h4 text-lg-h4"
+                >Welcome to our online lane reservation system</h1>
               </v-card-text>
             </v-card>
           </div>
           <div>
             <p class="text-md-body-1 mt-3">
               Via this site you can make a reservation at the club for a shooting
-              lane. <br>
-              Once you are signed-in, you are able to see what lanes are available and
+              lane.
+              <br />Once you are signed-in, you are able to see what lanes are available and
               you can book a lane.
             </p>
           </div>
           <div>
-            <h2 class="font-weight-bold mt-5">
-              SIGN-UP
-            </h2>
+            <h2 class="font-weight-bold mt-5">SIGN-UP</h2>
             <p class="text-md-body-1 mt-3">
               If this is your first time here, click the
-              <span class="font-weight-bold error--text">"Signup"</span> link to create an account.
+              <span
+                class="font-weight-bold error--text"
+              >"Signup"</span> link to create an account.
             </p>
             <router-link to="/signup">
               <img
                 src="../assets/Singup.png"
                 alt="Signup logo"
                 class="mt-1 signup"
-              >
+              />
             </router-link>
           </div>
           <div>
-            <h2 class="font-weight-bold mt-5">
-              Overview of available time slots
-            </h2>
-            <p class="text-md-body-1 mt-3">
-              Available timeslots per day/range/lane.
-            </p>
+            <h2 class="font-weight-bold mt-5">Overview of available time slots</h2>
+            <p class="text-md-body-1 mt-3">Available timeslots per day/range/lane.</p>
 
             <AvailabilityOverview
               v-for="(value, name, index) in availability"
@@ -77,11 +73,11 @@ export default {
   name: 'Home',
 
   components: {
-    AvailabilityOverview: () => import('@/components/reservations/AvailabilityOverview.vue')
+    AvailabilityOverview: () =>
+      import('@/components/reservations/AvailabilityOverview.vue'),
   },
 
   data: () => ({
-
     headers: [
       {
         text: 'Hours/Ranges',
@@ -475,13 +471,12 @@ export default {
         ],
       },
     ],
-
   }),
 
   head: {
     title() {
       return {
-        inner: 'Home'
+        inner: 'Home',
       };
     },
   },
@@ -489,7 +484,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .home {
   width: 100%;
 
@@ -497,11 +491,10 @@ export default {
   img.signup {
     display: block;
     max-width: 100%;
-    height:auto;
+    height: auto;
     margin: 0 auto;
     border-radius: 20px;
     box-shadow: 10px 10px 10px 1px grey;
   }
 }
-
 </style>
