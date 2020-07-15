@@ -5,7 +5,7 @@
         class="mt-16"
         src="../assets/oops2.png"
         alt="Oops 404"
-      >
+      />
       <h1>Hello there</h1>
       <p>You tried to access a page that is not available 😕</p>
       <h2>{{ pageNotFound }}</h2>
@@ -13,9 +13,7 @@
         <router-link
           class="emo-home"
           to="/"
-        >
-          🏠
-        </router-link>
+        >🏠</router-link>
       </div>
     </div>
   </v-container>
@@ -34,11 +32,10 @@ export default {
   head: {
     title() {
       return {
-        inner: this.pageNotFound
+        inner: this.pageNotFound,
       };
     },
-  }
-
+  },
 };
 </script>
 
@@ -49,5 +46,4 @@ export default {
 .emo-home {
   font-size: 10em;
 }
-
 </style>
