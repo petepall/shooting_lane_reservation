@@ -220,6 +220,19 @@ export default {
 
   methods: {
     ...mapActions('users', ['patch', 'find']),
+
+    // async getUser() {
+    //   try {
+    //     const response = await this.$store.dispatch('auth/athenticate');
+    //     this.user = response.user;
+    //     this.oldEmail = response.user.email;
+    //   } catch (error) {
+    //     if (!error.message.includes('Could not find stored JWT')) {
+    //       console.log('Authentication error', error);
+    //     }
+    //     this.$router.push('/404');
+    //   }
+    // },
     getUser() {
       this.$store
         .dispatch('auth/authenticate')
