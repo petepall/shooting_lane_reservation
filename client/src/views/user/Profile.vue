@@ -221,37 +221,25 @@ export default {
   methods: {
     ...mapActions('users', ['patch', 'find']),
 
-    // async getUser() {
-    //   try {
-    //     const response = await this.$store.dispatch('auth/athenticate');
-    //     this.user = response.user;
-    //     this.oldEmail = response.user.email;
-    //   } catch (error) {
-    //     if (!error.message.includes('Could not find stored JWT')) {
-    //       console.log('Authentication error', error);
-    //     }
-    //     this.$router.push('/404');
-    //   }
-    // },
-    getUser() {
-      this.$store
-        .dispatch('auth/authenticate')
-        .then((response) => {
-          this.user = response.user;
-          this.oldEmail = this.user.email;
-        })
-        .catch((error) => {
-          if (!error.message.includes('Could not find stored JWT')) {
-            console.log('Authentication error', error);
-          }
-          this.$router.push('/404');
-        });
+    async getUser() {
+      try {
+        const response = await this.$store.dispatch('auth/authenticate');
+        this.user = response.user;
+        this.oldEmail = response.user.email;
+      } catch (error) {
+        if (!error.message.includes('Could not find stored JWT')) {
+          console.log('Authentication error', error);
+        }
+        this.$router.push('/404');
+      }
     },
 
-    updateUser() {
+    async updateUser() {
       if (this.valid) {
         const params = { query: { email: this.user.email } };
-        this.find(params).then((resolve) => {
+
+        try {
+          const resolve = await this.find(params);
           if ((resolve.data.length === 0 || undefined)
             || (this.user.email === this.oldEmail)) {
             // eslint-disable-next-line no-underscore-dangle
@@ -262,41 +250,41 @@ export default {
           } else {
             throw new Error('That email address is unavailable.');
           }
-        }).catch((err) => {
+        } catch (error) {
           this.snackBarColor = 'error';
-          this.snackBarMessage = err.message;
+          this.snackBarMessage = error.message;
           this.snackbar = true;
-        });
+        }
       }
     },
 
-    updatePassword() {
+    async updatePassword() {
       if (this.valid) {
         const { User } = this.$FeathersVuex.api;
         const user = new User(this.user);
-        user.update()
-          .then(() => {
-            // console.log(user);
-            this.$router.push('/profile').catch(() => {});
-            this.snackBarColor = 'success';
-            this.snackBarMessage = 'Password updated';
-            this.snackbar = true;
-          })
-          // Just use the returned error instead of mapping it from the store.
-          .catch((err) => {
-            // Convert the error to a plain object and add a message.
-            const { type, name } = err;
-            // eslint-disable-next-line no-param-reassign
-            err = { ...err };
-            // eslint-disable-next-line no-param-reassign
-            err.message = type === 'FeathersError' && name === 'Conflict'
-              ? 'That email address is unavailable.'
-              : 'An error prevented signup.';
-            // console.log(err.message);
-            this.snackBarColor = 'error';
-            this.snackBarMessage = err.message;
-            this.snackbar = true;
-          });
+
+        try {
+          await user.update();
+          // console.log(user);
+          this.$router.push('/profile').catch(() => {});
+          this.snackBarColor = 'success';
+          this.snackBarMessage = 'Password updated';
+          this.snackbar = true;
+        } catch (error) {
+          // Convert the error to a plain object and add a message.
+          const { type, name } = error;
+
+          // eslint-disable-next-line no-ex-assign
+          error = { ...error };
+          // eslint-disable-next-line no-ex-assign
+          error.message = type === 'FeathersError' && name === 'Conflict'
+            ? 'That email address is unavailable.'
+            : 'An error prevented signup.';
+          // console.log(err.message);
+          this.snackBarColor = 'error';
+          this.snackBarMessage = error.message;
+          this.snackbar = true;
+        }
       }
     },
   },
