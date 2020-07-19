@@ -50,10 +50,12 @@
     "cors": "^2.8.5",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.21.2",
+    "feathers-mailer": "^3.0.1",
     "feathers-mongoose": "^8.3.0",
     "helmet": "^3.23.1",
     "mongodb-core": "^3.2.7",
     "mongoose": "^5.9.19",
+    "nodemailer-smtp-transport": "^2.7.4",
     "serve-favicon": "^2.5.0",
     "winston": "^3.3.0"
   },
