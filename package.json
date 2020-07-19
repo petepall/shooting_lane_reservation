@@ -2,7 +2,7 @@
   "name": "shooting_lane_reservation",
   "version": "0.1.0",
   "license": "MIT",
-  "scripts": {
-
+  "scripts": {},
+  "dependencies": {
   }
 }

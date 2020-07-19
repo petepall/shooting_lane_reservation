@@ -1,26 +1,27 @@
 // Initializes the `mailer` service on path `/mailer`
-const createService = require('./mailer.class.js');
 const hooks = require('./mailer.hooks');
-const filters = require('./mailer.filters');
+const Mailer = require('feathers-mailer');
+const smtpTransport = require('nodemailer-smtp-transport');
 
-module.exports = function () {
-  const app = this;
-  const paginate = app.get('paginate');
+require('dotenv').config();
 
-  const options = {
-    name: 'mailer',
-    paginate
-  };
+module.exports = function (app) {
+  app.use(
+    '/mailer',
+    Mailer(
+      smtpTransport({
+        // gmail account security needs to be set to less secure.
+        host: process.env.EMAIL_HOST,
+        port: process.env.EMAIL_PORT,
+        secure: process.env.EMAIL_SECURE,
+        auth: {
+          user: process.env.EMAIL,
+          pass: process.env.EMAIL_PASSWORD,
+        },
+      })
+    )
+  );
 
-  // Initialize our service with any options it requires
-  app.use('/mailer', createService(options));
-
-  // Get our initialized service so that we can register hooks and filters
   const service = app.service('mailer');
-
   service.hooks(hooks);
-
-  if (service.filter) {
-    service.filter(filters);
-  }
 };
