@@ -86,7 +86,6 @@
       color="error"
     >
       {{ snackBarMessage }}
-
       <template v-slot:action="{ attrs }">
         <v-btn
           color="info"
@@ -103,7 +102,11 @@
 
 <script>
 import { mapState } from 'vuex';
-import { emailRules, displayNameRules, passwordRules } from '../../helpers/validators';
+import {
+  emailRules,
+  displayNameRules,
+  passwordRules,
+} from '../../helpers/validators';
 
 export default {
   name: 'SignUp',
@@ -123,7 +126,7 @@ export default {
     error: '',
     snackbar: false,
     snackBarTimeout: 3000,
-    snackBarMessage: ''
+    snackBarMessage: '',
   }),
 
   computed: {
@@ -132,30 +135,31 @@ export default {
         ? 'Passwords do not match'
         : true;
     },
-    ...mapState('users', { loading: 'isCreatePending' })
+    ...mapState('users', { loading: 'isCreatePending' }),
   },
 
   methods: {
     async signUp() {
-      try {
-        if (this.valid){
-          const { User } = this.$FeathersVuex.api;
-          const user = new User(this.user);
+      if (this.valid) {
+        const { User } = this.$FeathersVuex.api;
+        const user = new User(this.user);
+        try {
           await user.save();
           await this.$router.push('/signin');
-        }
-      } catch (error) {
-        // Convert the error to a plain object and add a message.
-            const { type, name } = error;
-            // eslint-disable-next-line no-ex-assign
-            error = { ...error };
-            // eslint-disable-next-line no-param-reassign
-            error.message = type === 'FeathersError' && name === 'Conflict'
+        } catch (error) {
+          // Convert the error to a plain object and add a message.
+          const { type, name } = error;
+          // eslint-disable-next-line no-ex-assign
+          error = { ...error };
+          // eslint-disable-next-line no-param-reassign
+          error.message =
+            type === 'FeathersError' && name === 'Conflict'
               ? 'That email address is unavailable.'
               : 'An error prevented signup.';
-            // console.log(err.message);
-            this.snackBarMessage = error.message;
-            this.snackbar = true;
+          // console.log(err.message);
+          this.snackBarMessage = error.message;
+          this.snackbar = true;
+        }
       }
     },
 
@@ -167,7 +171,7 @@ export default {
   head: {
     title() {
       return {
-        inner: 'Signup page'
+        inner: 'Signup page',
       };
     },
   },
@@ -175,5 +179,4 @@ export default {
 </script>
 
 <style>
-
 </style>
