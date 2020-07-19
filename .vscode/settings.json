@@ -2,5 +2,6 @@
     "eslint.workingDirectories": [
         "client",
         "server"
-    ]
+    ],
+    "liveServer.settings.port": 8081
 }
