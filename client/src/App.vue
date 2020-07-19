@@ -32,25 +32,24 @@ export default {
     title: 'Shooting lane reservation system',
   }),
 
-  mounted() {
-    this.authenticate()
-      .then(() => {
-        this.$router.push('/').catch(() => {});
-      })
-      .catch((error) => {
-        const type = error.className;
-        // eslint-disable-next-line no-param-reassign
-        error = { ...error };
-        // eslint-disable-next-line no-param-reassign
-        error.message =
-          type === 'not-authenticated'
-            ? 'Incorrect email or password.'
-            : 'An error prevented login.';
-        this.error = error;
-        // console.error(this.error.message);
-        this.snackBarMessage = this.error.message;
-        this.snackbar = true;
-      });
+  async mounted() {
+    try {
+      await this.authenticate();
+      await this.$router.push('/');
+    } catch (error) {
+      const type = error.className;
+      // eslint-disable-next-line no-ex-assign
+      error = { ...error };
+      // eslint-disable-next-line no-param-reassign
+      error.message =
+        type === 'not-authenticated'
+          ? 'Incorrect email or password.'
+          : 'An error prevented login.';
+      this.error = error;
+      // console.error(this.error.message);
+      this.snackBarMessage = this.error.message;
+      this.snackbar = true;
+    }
   },
 
   methods: { ...mapActions('auth', ['authenticate']) },
