@@ -109,3 +109,8 @@ $RECYCLE.BIN/
 # Others
 lib/
 data/
+
+# environment
+.env
+.env.local
+.env.staging
