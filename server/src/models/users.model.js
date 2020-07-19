@@ -16,6 +16,12 @@ module.exports = (app) => {
       password: { type: String, required: true },
       displayName: { type: String, required: true },
       imageUrl: { type: String, required: false },
+      isVerified: { type: Boolean },
+      verifyToken: { type: String },
+      verifyExpires: { type: Date },
+      verifyChanges: { type: Object },
+      resetToken: { type: String },
+      resetExpires: { type: Date }
     },
     {
       timestamps: true,
