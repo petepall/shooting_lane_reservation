@@ -93,16 +93,15 @@ export default {
   },
 
   methods: {
-    signIn() {
+    async signIn() {
       if (this.valid) {
         const { email, password } = this.user;
-        this.$store.dispatch('auth/authenticate', { strategy: 'local', email, password })
-          .then(() => {
-            this.$router.push('/');
-          })
-          .catch((error) => {
-            const type = error.className;
-            // eslint-disable-next-line no-param-reassign
+        try {
+          await this.$store.dispatch('auth/authenticate', { strategy: 'local', email, password });
+          await this.$router.push('/');
+        } catch (error) {
+          const type = error.className;
+            // eslint-disable-next-line no-ex-assign
             error = { ...error };
             // eslint-disable-next-line no-param-reassign
             error.message = (type === 'not-authenticated')
@@ -112,7 +111,7 @@ export default {
             // console.error(this.error.message);
             this.snackBarMessage = this.error.message;
             this.snackbar = true;
-          });
+        }
       }
     },
   },
