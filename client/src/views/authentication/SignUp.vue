@@ -136,42 +136,32 @@ export default {
   },
 
   methods: {
-    signUp() {
-      if (this.valid) {
-        const { User } = this.$FeathersVuex.api;
-        const user = new User(this.user);
-        user.save()
-          .then(() => {
-            // console.log(user);
-            this.$router.push('/signin');
-          })
-          // Just use the returned error instead of mapping it from the store.
-          .catch((err) => {
-            // Convert the error to a plain object and add a message.
-            const { type, name } = err;
+    async signUp() {
+      try {
+        if (this.valid){
+          const { User } = this.$FeathersVuex.api;
+          const user = new User(this.user);
+          await user.save();
+          await this.$router.push('/signin');
+        }
+      } catch (error) {
+        // Convert the error to a plain object and add a message.
+            const { type, name } = error;
+            // eslint-disable-next-line no-ex-assign
+            error = { ...error };
             // eslint-disable-next-line no-param-reassign
-            err = { ...err };
-            // eslint-disable-next-line no-param-reassign
-            err.message = type === 'FeathersError' && name === 'Conflict'
+            error.message = type === 'FeathersError' && name === 'Conflict'
               ? 'That email address is unavailable.'
               : 'An error prevented signup.';
             // console.log(err.message);
-            this.snackBarMessage = err.message;
+            this.snackBarMessage = error.message;
             this.snackbar = true;
-          });
       }
     },
+
     reset() {
       this.$refs.form.reset();
     },
-
-    // when using lazy validation map these methods to buttons
-    // validate() {
-    //   this.$refs.form.validate();
-    // },
-    // resetValidation() {
-    //   this.$refs.form.resetValidation();
-    // },
   },
 
   head: {
